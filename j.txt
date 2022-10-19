@@ -1,0 +1,4 @@
+npm i @types/bcrypt @types/body-parser @types/cookie-parser @types/cookie-session @types/cors @types/date-fns @types/express @types/jsonwebtoken @types/node @types/pg @types/sequelize @types/swagger-jsdoc @types/swagger-ui-express @types/uuidv4 -D
+
+
+npm i bcrypt body-parser cookie-parser cookie-session data-fns date-fns dotenv express express-async-handler fs jsonwebtoken node path pg pg-hstore sequelize sequelize-cli swagger-jsdoc swagger-ui-express ts-node ts-node-dev typescript uuidv4
