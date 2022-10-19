@@ -12,7 +12,7 @@ import cookieParser from 'cookie-parser';
 import roomRoutes from './routes/roomRoutes';
 import sequelize from './config/db';
 
-const port =  3000;
+const port =  process.env.PORT || 3001;
 
 // middleware
 app.use(express.urlencoded({ extended: false }));
