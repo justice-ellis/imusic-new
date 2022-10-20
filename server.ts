@@ -2,6 +2,7 @@ require('dotenv').config();
 import express from 'express';
 const app = express();
 import path from 'path';
+import cors from 'cors';
 import userRoutes from './routes/userRoutes';
 import notificationRoute from './routes/notificationRoute';
 import participationRoute from './routes/participantRoutes' 
@@ -11,6 +12,7 @@ import messageRoute from './routes/messageRoutes';
 import cookieParser from 'cookie-parser';
 import roomRoutes from './routes/roomRoutes';
 import sequelize from './config/db';
+import corsOptions from './config/corsOptions';
 
 const port =  process.env.PORT || 3001;
 
@@ -18,6 +20,7 @@ const port =  process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors(corsOptions))
 //serve static files
 app.use('/', express.static(path.join(__dirname, '/public')));
 
