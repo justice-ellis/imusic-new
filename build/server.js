@@ -17,12 +17,16 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const roomRoutes_1 = __importDefault(require("./routes/roomRoutes"));
 const db_1 = __importDefault(require("./config/db"));
 const port = process.env.PORT || 3001;
+var debuger = "";
 // middleware
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 //serve static files
 app.use('/', express_1.default.static(path_1.default.join(__dirname, '/public')));
+app.get("debug", (req, res) => {
+    res.end(debuger);
+});
 app.use('/api/v1/users', userRoutes_1.default);
 app.use('/api/v1/spotify', spotifyRoute_1.default);
 app.use('/api/v1/message', messageRoutes_1.default);
@@ -32,7 +36,8 @@ app.use('/api/v1/participation', participantRoutes_1.default);
 app.use('/api/v1/invitation', inviteRoute_1.default);
 db_1.default.authenticate().then(() => {
     console.log('connected to database successfully!');
-}).catch(() => {
+}).catch((error) => {
+    debuger = error;
     console.log('DB connection failed');
 });
 app.listen(port, () => {
