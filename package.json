@@ -2,10 +2,10 @@
   "name": "imusic-new",
   "version": "1.0.0",
   "description": "",
-  "main": "server.ts",
+  "main": "server.js",
   "scripts": {
-    "start": "tsnd --respawn server.ts",
-    "postinstall": "ts-node",
+    "dev": "tsnd --respawn server.ts",
+    "start": "node ./build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

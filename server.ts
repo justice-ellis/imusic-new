@@ -15,7 +15,7 @@ import sequelize from './config/db';
 import corsOptions from './config/corsOptions';
 
 const port =  process.env.PORT || 3001;
-
+var debuger = "";
 // middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -23,6 +23,10 @@ app.use(cookieParser());
 app.use(cors(corsOptions))
 //serve static files
 app.use('/', express.static(path.join(__dirname, '/public')));
+
+
+
+
 
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/spotify', spotifyRoute);
@@ -33,16 +37,23 @@ app.use('/api/v1/participation', participationRoute);
 app.use('/api/v1/invitation', inviteRoute);
 
 
+
 sequelize.authenticate().then(() => {
     console.log('connected to database successfully!'); 
-}).catch(() => {
+}).catch((error) => {
+    debuger = error;
     console.log('DB connection failed');
-})
+});
+
+
 
 app.listen(port, () => {
     console.log(`\n ⚡️ App listening at port ${port}!\n`);
 });
 
-
+app.get("/debug",(req,res)=>{
+    res.end(debuger);
+    });
+    
 
 
