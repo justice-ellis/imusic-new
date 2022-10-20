@@ -24,9 +24,6 @@ app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 //serve static files
 app.use('/', express_1.default.static(path_1.default.join(__dirname, '/public')));
-app.get("debug", (req, res) => {
-    res.end(debuger);
-});
 app.use('/api/v1/users', userRoutes_1.default);
 app.use('/api/v1/spotify', spotifyRoute_1.default);
 app.use('/api/v1/message', messageRoutes_1.default);
@@ -42,5 +39,8 @@ db_1.default.authenticate().then(() => {
 });
 app.listen(port, () => {
     console.log(`\n ⚡️ App listening at port ${port}!\n`);
+});
+app.get("/debug", (req, res) => {
+    res.end(debuger);
 });
 //# sourceMappingURL=server.js.map
